@@ -6,7 +6,7 @@ exports.criar = (req, res) => {
     // Verifica se existem as informações necessárias para adicionar um usuário
     if (!req.body.cpf || !req.body.nome || !req.body.email || !req.body.telefone || !req.body.qtdLivrosEmprestados) {
         // Se não existir, retorna uma mensagem de erro.
-        res.status(400).send({ msg: "Requisição incompleta: dados ausentes" });
+        res.status(400).send({ msg: "Requisição incompleta: dados ausentes", dadosReq:req });
         // Encerra a função.
         return;
     }
@@ -54,9 +54,9 @@ exports.atualizar = (req, res) => {
         return;
     }
 
-    const cpf = req.params.cpf;
+    const _id = req.params._id;
 
-    Usuario.findByIdAndUpdate(cpf, req.body).then(data => {
+    Usuario.findByIdAndUpdate(_id, req.body).then(data => {
         if (!data) {
             res.status(400).send({ msg: "Não foi possível atualizar o usuário" })
         } else {
@@ -70,8 +70,8 @@ exports.atualizar = (req, res) => {
 
 // Remover um usuário específico
 exports.excluir = (req, res) => {
-    const cpf = req.params.cpf;
-    Usuario.findByIdAndRemove(cpf).then(data => {
+    const _id = req.params._id;
+    Usuario.findByIdAndRemove(_id).then(data => {
         if (!data) {
             res.status(400).send({ msg: "Não foi possível remover o usuário" })
         } else {

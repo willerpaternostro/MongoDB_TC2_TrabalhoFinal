@@ -24,10 +24,10 @@ module.exports = app => {
     router.get("/user", usuario.obterTodos);
   
     
-    router.put("/user/:id", usuario.atualizar);
+    router.put("/user/:_id", usuario.atualizar);
   
     
-    router.delete("/user/:id", usuario.excluir);
+    router.delete("/user/:_id", usuario.excluir);
 
    
   
