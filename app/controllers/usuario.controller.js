@@ -2,7 +2,7 @@ const db = require("../models");
 const Usuario = db.usuario;
 
 // Adicionar um novo usuário
-exports.create = (req, res) => {
+exports.criar = (req, res) => {
     // Verifica se existem as informações necessárias para adicionar um usuário
     if (!req.body.cpf || !req.body.nome || !req.body.email || !req.body.telefone || !req.body.qtdLivrosEmprestados) {
         // Se não existir, retorna uma mensagem de erro.
@@ -32,7 +32,7 @@ exports.create = (req, res) => {
 };
 
 // Retornar a lista de usuários
-exports.findAll = (req, res) => {
+exports.obterTodos = (req, res) => {
     /* 
     Neste exemplo, queremos retornar todos os elementos que atendem a determinada condição. 
     Caso a condição esteja vazia (como é o caso aqui), então todos os usuários atendem à condição (retornando a lista de usuários completa).
@@ -48,7 +48,7 @@ exports.findAll = (req, res) => {
 
 
 // Atualizar um usuário
-exports.update = (req, res) => {
+exports.atualizar = (req, res) => {
     if (!req.body) {
         res.status(400).send({ msg: "Dados inválidos" });
         return;
@@ -69,7 +69,7 @@ exports.update = (req, res) => {
 };
 
 // Remover um usuário específico
-exports.delete = (req, res) => {
+exports.excluir = (req, res) => {
     const cpf = req.params.cpf;
     Usuario.findByIdAndRemove(cpf).then(data => {
         if (!data) {

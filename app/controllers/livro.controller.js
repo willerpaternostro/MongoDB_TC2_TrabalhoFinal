@@ -30,8 +30,6 @@ exports.create = (req, res) => {
     });
 };
 
-
-
 // Retornar a lista de livros
 exports.findAll = (req, res) => {
     /* 

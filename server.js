@@ -4,6 +4,7 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 
 const app = express();
+//app.use('/', require('./routes/index'));
 
 // Seta as configurações do CORS. No caso, especifica que apenas conexões de tal endereço serão aceitas. Ver: // https://expressjs.com/en/resources/middleware/cors.html
 var corsOptions = {
@@ -24,10 +25,9 @@ app.get("/", (req, res) => {
   res.json({ msg: "Está funcionando!" });
 });
 
+
 // Utiliza as rotas previstas pelo arquivo livro.routes.js
 require("./app/routes/livro.routes.js")(app);
-// Utiliza as rotas previstas pelo arquivo usuario.routes.js
-//require("./app/routes/usuario.routes.js")(app);
 
 // "Executa" o servidor, escutando em uma porta específica.
 const PORT = process.env.PORT || 8080;
